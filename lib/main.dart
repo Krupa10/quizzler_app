@@ -69,7 +69,19 @@ class _QuizPageState extends State<QuizPage> {
                 "False",
                 style: TextStyle(fontSize: 20, color: Colors.white),
               )),
-        ))
+        )),
+        Row(
+          children: const [
+            Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            ),
+          ],
+        )
       ],
     );
   }
