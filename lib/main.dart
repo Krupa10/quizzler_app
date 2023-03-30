@@ -46,30 +46,32 @@ class _QuizPageState extends State<QuizPage> {
             )),
         Expanded(
             child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: OutlinedButton(
-              style: ButtonStyle(
-                  backgroundColor:
+              padding: const EdgeInsets.all(15.0),
+              child: OutlinedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.green)),
-              onPressed: () {},
-              child: const Text(
-                "True",
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              )),
-        )),
+                  onPressed: () {},
+                  child: const Text(
+                    "True",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  )),
+            )),
         Expanded(
             child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: OutlinedButton(
-              style: ButtonStyle(
-                  backgroundColor:
+              padding: const EdgeInsets.all(15.0),
+              child: OutlinedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.pink)),
-              onPressed: () {},
-              child: const Text(
-                "False",
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              )),
-        )),
+                  onPressed: () {},
+                  child: const Text(
+                    "False",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  )),
+            )),
+
+        ///Score keeper icons
         Row(
           children: const [
             Icon(
