@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(const Quizzler());
 
@@ -31,15 +34,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
-  List<String> questions = [
-    'Sea otters have a favorite rock they use to break open food.',
-    'Sharks are mammals.',
-    'The blue whale is the biggest animal to have ever lived.',
-    'Bats are blind.',
-    'South Africa has one capital.',
-    'The Atlantic Ocean is the biggest ocean on Earth.'
-  ];
-  List<bool> answers = [true, false, true, false, false, false];
+
   int questionNumber = 0;
 
   @override
@@ -54,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  questions[questionNumber],
+                  quizBrain.questionBank[questionNumber].questiontext,
                   style: const TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
@@ -67,6 +62,8 @@ class _QuizPageState extends State<QuizPage> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.green)),
               onPressed: () {
+                bool correctAnswer =
+                    quizBrain.questionBank[questionNumber].questionAnswer;
                 setState(() {
                   questionNumber++;
                 });
@@ -84,6 +81,8 @@ class _QuizPageState extends State<QuizPage> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.pink)),
               onPressed: () {
+                bool correctAnswer =
+                    quizBrain.questionBank[questionNumber].questionAnswer;
                 setState(() {
                   questionNumber++;
                 });
