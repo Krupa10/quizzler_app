@@ -49,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  quizBrain.questionBank[questionNumber].questiontext,
+                  quizBrain.questionText(questionNumber),
                   style: const TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
@@ -62,8 +62,7 @@ class _QuizPageState extends State<QuizPage> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.green)),
               onPressed: () {
-                bool correctAnswer =
-                    quizBrain.questionBank[questionNumber].questionAnswer;
+                bool correctAnswer = quizBrain.getCorrectAnswer(questionNumber);
                 setState(() {
                   questionNumber++;
                 });
@@ -81,8 +80,7 @@ class _QuizPageState extends State<QuizPage> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.pink)),
               onPressed: () {
-                bool correctAnswer =
-                    quizBrain.questionBank[questionNumber].questionAnswer;
+                bool correctAnswer = quizBrain.getCorrectAnswer(questionNumber);
                 setState(() {
                   questionNumber++;
                 });

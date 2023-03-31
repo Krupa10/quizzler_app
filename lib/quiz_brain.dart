@@ -1,7 +1,9 @@
+import 'dart:ffi';
+
 import 'package:quizzler_app/question.dart';
 
 class QuizBrain {
-  List<Question> questionBank = [
+  final List<Question> _questionBank = [
     Question(
         q: 'Sea otters have a favorite rock they use to break open food.',
         a: true),
@@ -12,4 +14,12 @@ class QuizBrain {
     Question(q: 'South Africa has one capital.', a: false),
     Question(q: 'The Atlantic Ocean is the biggest ocean on Earth.', a: false),
   ];
+
+  String questionText(int questionNumber) {
+    return _questionBank[questionNumber].questiontext;
+  }
+
+  bool getCorrectAnswer(int questionNumber) {
+    return _questionBank[questionNumber].questionAnswer;
+  }
 }
