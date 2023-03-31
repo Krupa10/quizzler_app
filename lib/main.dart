@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain quizBrain = QuizBrain();
 
@@ -35,7 +36,35 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  int questionNumber = 0;
+  void checkAnswer(bool userAnswer) {
+    bool correctAnswer = quizBrain.getCorrectAnswer();
+    if (quizBrain.isFinished() == true) {
+      Alert(
+        context: context,
+        title: 'Finished!',
+        desc: 'You\'ve reached the end of the quiz.',
+      ).show();
+
+      //TODO Step 4 Part C - reset the questionNumber,
+      quizBrain.reset();
+
+      //TODO Step 4 Part D - empty out the scoreKeeper.
+      scoreKeeper = [];
+    } else if (correctAnswer == userAnswer) {
+      scoreKeeper.add(const Icon(
+        Icons.check,
+        color: Colors.green,
+      ));
+    } else {
+      scoreKeeper.add(const Icon(
+        Icons.close,
+        color: Colors.red,
+      ));
+    }
+    setState(() {
+      quizBrain.nextQuestion();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +78,7 @@ class _QuizPageState extends State<QuizPage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  quizBrain.questionText(questionNumber),
+                  quizBrain.questionText(),
                   style: const TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
@@ -62,10 +91,7 @@ class _QuizPageState extends State<QuizPage> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.green)),
               onPressed: () {
-                bool correctAnswer = quizBrain.getCorrectAnswer(questionNumber);
-                setState(() {
-                  questionNumber++;
-                });
+                checkAnswer(true);
               },
               child: const Text(
                 "True",
@@ -80,10 +106,7 @@ class _QuizPageState extends State<QuizPage> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.pink)),
               onPressed: () {
-                bool correctAnswer = quizBrain.getCorrectAnswer(questionNumber);
-                setState(() {
-                  questionNumber++;
-                });
+                checkAnswer(false);
               },
               child: const Text(
                 "False",
@@ -92,18 +115,7 @@ class _QuizPageState extends State<QuizPage> {
         )),
 
         ///Score keeper icons
-        Row(children: scoreKeeper
-            /*const [
-            Icon(
-              Icons.check,
-              color: Colors.green,
-            ),
-            Icon(
-              Icons.close,
-              color: Colors.red,
-            ),
-          ],*/
-            )
+        Row(children: scoreKeeper)
       ],
     );
   }
